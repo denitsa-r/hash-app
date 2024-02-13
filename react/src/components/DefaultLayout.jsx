@@ -30,8 +30,9 @@ export default function DefaultLayout() {
   return (
     <div id="defaultLayout">
       <aside>
-        <Link to="/dashboard">Dashboard</Link>
-        <Link to="/users">Users</Link>
+        <Link to="/hash">Hash</Link>
+        <Link to="/history">History</Link>
+        <Link to="/statistics">Statistics</Link>
       </aside>
       <div className="content">
         <header>
