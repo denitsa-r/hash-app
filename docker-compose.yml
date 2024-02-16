@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  frontend:
+    # build: .
+    build: ./react
+    ports:
+      # - "49156:5432"
+      - "3000:3000"
+    mem_limit: 8g  # Set the memory limit to 8 gigabytes
+    #volumes:
+      #- .:/app
+      #- .:/var/www/html
+      #- .:/react
+    depends_on:
+      - backend
+
+  backend:
+    build: .
+    ports:
+      # - "49158:5672"
+      # - "49159:15672"
+      - "8000:8000"
+    volumes:
+      - .:/app
+      #- .:/var/www/html
+    environment:
+      DB_HOST: db
+      DB_CONNECTION: mysql
+      # DB_HOST: 127.0.0.1
+      DB_PORT: 3006
+      DB_DATABASE: hash_app
+      DB_USERNAME: root
+      DB_PASSWORD: D_r/4*7Oo3
+
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: hash_app
+      #MYSQL_USER: root
+      #MYSQL_PASSWORD: D_r/4*7Oo3
+      MYSQL_ROOT_PASSWORD: D_r/4*7Oo3
+      
+      
+    ports:
+      - "3006:3006"
